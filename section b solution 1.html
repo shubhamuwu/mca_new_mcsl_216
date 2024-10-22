@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Room Booking Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        input[type="text"], input[type="email"], input[type="date"], select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Hostel Room Booking Form</h2>
+    <form id="bookingForm">
+        <div>
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName">
+        </div>
+        <div>
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div>
+            <label for="arrivalDate">Arrival Date</label>
+            <input type="date" id="arrivalDate" name="arrivalDate">
+        </div>
+        <div>
+            <label for="departureDate">Departure Date</label>
+            <input type="date" id="departureDate" name="departureDate">
+        </div>
+        <div>
+            <label for="country">Country</label>
+            <select id="country" name="country">
+                <option value="">Select</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+            </select>
+        </div>
+        <div>
+            <label>Payment Mode</label><br>
+            <input type="radio" id="debitCard" name="paymentMode" value="Debit Card">
+            <label for="debitCard">Debit Card</label>
+            <input type="radio" id="creditCard" name="paymentMode" value="Credit Card">
+            <label for="creditCard">Credit Card</label>
+        </div>
+        <div class="error" id="errorMessage"></div>
+        <div class="buttons">
+            <button type="button" onclick="submitForm()">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+    </form>
+
+    <script>
+        function validateForm() {
+            let firstName = document.getElementById('firstName').value;
+            let lastName = document.getElementById('lastName').value;
+            let email = document.getElementById('email').value;
+            let arrivalDate = document.getElementById('arrivalDate').value;
+            let departureDate = document.getElementById('departureDate').value;
+            let country = document.getElementById('country').value;
+            let paymentMode = document.querySelector('input[name="paymentMode"]:checked');
+
+            if (!firstName || !lastName || !email || !arrivalDate || !departureDate || !country || !paymentMode) {
+                document.getElementById('errorMessage').innerText = "All fields are required!";
+                return false;
+            }
+
+            return true;
+        }
+
+        function submitForm() {
+            if (validateForm()) {
+                // Simulating submission to a database
+                alert("Form submitted successfully!");
+                // You can add database submission code here.
+                document.getElementById('bookingForm').reset();  // Reset the form after submission
+            }
+        }
+    </script>
+</body>
+</html>
